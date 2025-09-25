@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.group-node {
+  width: auto;
+  height: auto;
+  border: 2px dashed #333;
+  background: #f9f9f9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.react-flow__node-group {
+  border: 2px dashed #333 !important;
+  background: #fafafa !important;
+  border-radius: 8px;
+}
+.react-flow__node-group.selectable.selected,
+.react-flow__node-group:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.react-flow__node-group {
+  background: none !important;
+  border: none !important;
+}
