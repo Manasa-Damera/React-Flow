@@ -55,7 +55,7 @@ function Home() {
 
   return (
     < >
-      <HomeSideBar />
+      {/* <HomeSideBar /> */}
       {/* Gradient wrapper */}
       <Box
         className="dashboard"
