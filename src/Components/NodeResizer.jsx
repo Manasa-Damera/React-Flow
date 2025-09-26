@@ -4,6 +4,7 @@ import { IconButton, Tooltip, Menu, MenuItem } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import "./ActionNode.css"
+import { createPortal } from "react-dom";
 
 const CustomResizerNode = ({ id, data, selected, type }) => {
   const [open, setOpen] = useState(false);
@@ -238,38 +239,31 @@ const CustomResizerNode = ({ id, data, selected, type }) => {
         </div>
       )}
 
-      {open && (
-        <div onClick={() => setOpen(false)}>
+      {open && 
+      createPortal(
+        <>
+        <div onClick={() => setOpen(false)} className="form-backdrop">
           <div className="edit-form-popup"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3
-              style={{
-                margin: "0 0 16px 0",
-                fontSize: "1.25rem",
-                fontWeight: 600,
-                color: "#333",
-              }}
-            >
-              Edit Group
-            </h3>
+            <h3>Edit Group</h3>
             <form
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 16,
-              }}
+              // style={{
+              //   display: "flex",
+              //   flexDirection: "column",
+              //   gap: 16,
+              // }}
             >
               <div>
                 <label
                   htmlFor="node-label"
-                  style={{
-                    display: "block",
-                    marginBottom: 8,
-                    fontSize: "0.875rem",
-                    fontWeight: 500,
-                    color: "#555",
-                  }}
+                  // style={{
+                  //   display: "block",
+                  //   marginBottom: 8,
+                  //   fontSize: "0.875rem",
+                  //   fontWeight: 500,
+                  //   color: "#555",
+                  // }}
                 >
                   Group Name
                 </label>
@@ -309,15 +303,15 @@ const CustomResizerNode = ({ id, data, selected, type }) => {
                   type="text"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    fontSize: "0.875rem",
-                    border: "1px solid #ccc",
-                    borderRadius: 4,
-                    outline: "none",
-                    transition: "border-color 0.2s",
-                  }}
+                  // style={{
+                  //   width: "100%",
+                  //   padding: "10px",
+                  //   fontSize: "0.875rem",
+                  //   border: "1px solid #ccc",
+                  //   borderRadius: 4,
+                  //   outline: "none",
+                  //   transition: "border-color 0.2s",
+                  // }}
                   onFocus={(e) => (e.target.style.borderColor = "#007bff")}
                   onBlur={(e) => (e.target.style.borderColor = "#ccc")}
                 />
@@ -370,6 +364,8 @@ const CustomResizerNode = ({ id, data, selected, type }) => {
             </form>
           </div>
         </div>
+        </>, 
+        document.body
       )}
     </div>
   );

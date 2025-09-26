@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { IconButton, Menu, MenuItem, Tooltip } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import "./ActionNode.css";
+import { createPortal } from "react-dom";
 
 const ActionNode = ({ id, data, parentId }) => {
   console.log("A8", id, data, parentId);
@@ -265,24 +266,29 @@ const ActionNode = ({ id, data, parentId }) => {
       <div>
         <strong>{label || "Unnamed"}</strong>
       </div>
-      <div className="description">{description || ""}</div>
+      <Tooltip title={ description || ""} arrow>
+      <div
+        className="description"
+        style={{
+          fontSize: "0.8rem",
+          color: "#555",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",  
+          maxWidth: "160px",  
+        }}
+      >
+    {description || ""}
+  </div>
+</Tooltip>
 
       {/* Plain HTML Edit Form */}
-      {open && (
+      {open && 
+      createPortal(
+        <>
         <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(0, 0, 0, 0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-          }}
           onClick={() => setOpen(false)}
+          className="form-backdrop"
         >
           <div className="edit-form-popup "
             onClick={(e) => e.stopPropagation()}
@@ -394,6 +400,8 @@ const ActionNode = ({ id, data, parentId }) => {
             </form>
           </div>
         </div>
+        </>,
+        document.body
       )}
     </div>
   );
