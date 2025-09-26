@@ -257,14 +257,8 @@ const CustomResizerNode = ({ id, data, selected, type }) => {
               <div>
                 <label
                   htmlFor="node-label"
-                  // style={{
-                  //   display: "block",
-                  //   marginBottom: 8,
-                  //   fontSize: "0.875rem",
-                  //   fontWeight: 500,
-                  //   color: "#555",
-                  // }}
-                >
+                 
+                  >
                   Group Name
                 </label>
                 <input

@@ -6,7 +6,7 @@ import "./ActionNode.css";
 import { createPortal } from "react-dom";
 
 const ActionNode = ({ id, data, parentId }) => {
-  console.log("A8", id, data, parentId);
+  // console.log("A8", id, data, parentId);
   const { label, description } = data;
   const [showToolbar, setShowToolbar] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -32,7 +32,7 @@ const ActionNode = ({ id, data, parentId }) => {
 
   const handleMenuClick = (event) => {
     event.stopPropagation();
-    console.log("Menu clicked:", id, "isChild:", isChild);
+    // console.log("Menu clicked:", id, "isChild:", isChild);
     setAnchorEl(event.currentTarget);
   };
 
@@ -110,7 +110,7 @@ const ActionNode = ({ id, data, parentId }) => {
   }, [id, getNodes, setNodes]);
 
   const handleDelete = useCallback(() => {
-    console.log(id, "id of a deleting node");
+    // console.log(id, "id of a deleting node");
     const currentNodes = getNodes();
     const currentEdges = getEdges();
 
@@ -165,10 +165,10 @@ const ActionNode = ({ id, data, parentId }) => {
   }, [id, getNodes, getEdges, setNodes, setEdges]);
 
   const handleDetach = () => {
-    console.log("Detach started for node:", id, "parentId:", parentId);
+    // console.log("Detach started for node:", id, "parentId:", parentId);
     const nodes = getNodes();
     const parentGroup = nodes.find((n) => n.id === parentId && n.type === "group");
-    console.log("Parent group:", parentGroup);
+    // console.log("Parent group:", parentGroup);
 
     let baseX = 100;
     let baseY = 100;
@@ -185,7 +185,7 @@ const ActionNode = ({ id, data, parentId }) => {
         n.position.y === baseY &&
         n.id !== id
     );
-    console.log("detachedNodes.length", detachedNodes.length);
+    // console.log("detachedNodes.length", detachedNodes.length);
     const offsetX = detachedNodes.length * 170;
 
     setNodes((nds) => {
@@ -199,8 +199,8 @@ const ActionNode = ({ id, data, parentId }) => {
             }
           : node
       );
-      console.log("Nodes after detach:", updated);
-      console.log("Detached node:", id, "at position:", { x: baseX + offsetX, y: baseY });
+      // console.log("Nodes after detach:", updated);
+      // console.log("Detached node:", id, "at position:", { x: baseX + offsetX, y: baseY });
       return updated;
     });
     setAnchorEl(null);

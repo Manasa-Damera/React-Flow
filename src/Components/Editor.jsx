@@ -78,8 +78,8 @@ export default function FlowEditor() {
   const {id}=useParams()
   const [showSaveForm,setShowSaveForm]=useState(false);
 
-  console.log("nodes",nodes)
-  console.log("edges: ",edges)
+  // console.log("nodes",nodes)
+  // console.log("edges: ",edges)
 
 
 const setNodes = useCallback(
@@ -156,7 +156,7 @@ const onDrop = useCallback(
     )
     });
 
-    console.log(group,"testing")
+    // console.log(group,"testing")
 
       if (group) {
       // dropped inside a group → make it child
@@ -398,7 +398,7 @@ const onDrop = useCallback(
         fitView
         onNodeClick={(evt, node) => console.log('node clicked', node)}
         onSelectionChange={({ nodes, edges }) => {
-          console.log('selection changed:', nodes);
+          // console.log('selection changed:', nodes);
         setSelectedNodes(nodes);
         }}
         onInit={setReactFlowInstance}
